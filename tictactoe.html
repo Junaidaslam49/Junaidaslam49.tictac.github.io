@@ -59,39 +59,32 @@
       }
       
       function calculateResult(player){
+        count++;
         if((arr[0]== '0' && arr[1]== '0' && arr[2]== '0') || (arr[0]== 'X' && arr[1]== 'X' && arr[2]== 'X')) {
-          count++
           alert(player + 'Won');
           location.reload();
         } else if((arr[0]== '0' && arr[3]== '0' && arr[6]== '0') || (arr[0]== 'X' && arr[3]== 'X' && arr[6]== 'X')) {
-          count++
           alert(player + 'Won');
           location.reload();
         } else if((arr[0]== '0' && arr[4]== '0' && arr[8]== '0') || (arr[0]== 'X' && arr[4]== 'X' && arr[8]== 'X')) {
-          count++
           alert(player + 'Won');
           location.reload();
         } else if((arr[1]== '0' && arr[4]== '0' && arr[7]== '0') || (arr[1]== 'X' && arr[4]== 'X' && arr[7]== 'X')) {
-          count++
           alert(player + 'Won');
           location.reload();
         } else if((arr[2]== '0' && arr[5]== '0' && arr[8]== '0') || (arr[2]== 'X' && arr[5]== 'X' && arr[8]== 'X')) {
-          count++
           alert(player + 'Won');
           location.reload();
         } else if((arr[2]== '0' && arr[4]== '0' && arr[6]== '0') || (arr[2]== 'X' && arr[4]== 'X' && arr[6]== 'X')) {
-          count++
           alert(player + 'Won');
           location.reload();
         } else if((arr[3]== '0' && arr[4]== '0' && arr[5]== '0') || (arr[3]== 'X' && arr[4]== 'X' && arr[5]== 'X')) {
-          count++
           alert(player + 'Won');
           location.reload();
         } else if((arr[6]== '0' && arr[7]== '0' && arr[8]== '0') || (arr[6]== 'X' && arr[7]== 'X' && arr[8]== 'X')) {
-          count++
           alert(player + 'Won');
           location.reload();
-        } else if((count != 1)) {
+        } else if((count == 9)) {
           alert('Match Draw');
           location.reload();
         }

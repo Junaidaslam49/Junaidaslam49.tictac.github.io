@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Tic Tac Toe</title>
+  </head>
+  <body>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <div class="container">
+        <div class="game">
+          <div id="first" onClick="checkValue(event)" class="game-field"></div>
+          <div id="second" onClick="checkValue(event)" class="game-field"></div>
+          <div id="third" onClick="checkValue(event)" class="game-field"></div>
+          <div id="fourth" onClick="checkValue(event)" class="game-field"></div>
+          <div id="fifth" onClick="checkValue(event)" class="game-field"></div>
+          <div id="sixth" onClick="checkValue(event)" class="game-field"></div>
+          <div id="seventh" onClick="checkValue(event)" class="game-field"></div>
+          <div id="eight" onClick="checkValue(event)" class="game-field"></div>
+          <div id="nineth" onClick="checkValue(event)" class="game-field"></div>
+        </div>
+        
+    </div>
+  </body>
+  <script>
+    var arr = [];
+    var count = 0;
+      var game = {
+        user1: '',
+        user2: '',
+        showValue : true,
+      };
+      function updateValue() {
+          return game.showValue = !game.showValue;
+      }
+      
+      function checkValue(event) {
+        updateValue();
+          if (game.showValue == true){
+            document.getElementById(event.currentTarget.id).innerHTML = 'X';
+            game.user1 = 'PlayerOne';
+            pushValuesInArray(event.currentTarget.id, 'X');
+            calculateResult(game.user1);
+          }else{
+            document.getElementById(event.currentTarget.id).innerHTML = '0';
+            game.user2 = 'PlayerTwo';
+            pushValuesInArray(event.currentTarget.id, '0');             
+            calculateResult(game.user2);
+          }
+      }
+      
+      function calculateResult(player){
+        if((arr[0]== '0' && arr[1]== '0' && arr[2]== '0') || (arr[0]== 'X' && arr[1]== 'X' && arr[2]== 'X')) {
+          count++
+          alert(player + 'Won');
+          location.reload();
+        } else if((arr[0]== '0' && arr[3]== '0' && arr[6]== '0') || (arr[0]== 'X' && arr[3]== 'X' && arr[6]== 'X')) {
+          count++
+          alert(player + 'Won');
+          location.reload();
+        } else if((arr[0]== '0' && arr[4]== '0' && arr[8]== '0') || (arr[0]== 'X' && arr[4]== 'X' && arr[8]== 'X')) {
+          count++
+          alert(player + 'Won');
+          location.reload();
+        } else if((arr[1]== '0' && arr[4]== '0' && arr[7]== '0') || (arr[1]== 'X' && arr[4]== 'X' && arr[7]== 'X')) {
+          count++
+          alert(player + 'Won');
+          location.reload();
+        } else if((arr[2]== '0' && arr[5]== '0' && arr[8]== '0') || (arr[2]== 'X' && arr[5]== 'X' && arr[8]== 'X')) {
+          count++
+          alert(player + 'Won');
+          location.reload();
+        } else if((arr[2]== '0' && arr[4]== '0' && arr[6]== '0') || (arr[2]== 'X' && arr[4]== 'X' && arr[6]== 'X')) {
+          count++
+          alert(player + 'Won');
+          location.reload();
+        } else if((arr[3]== '0' && arr[4]== '0' && arr[5]== '0') || (arr[3]== 'X' && arr[4]== 'X' && arr[5]== 'X')) {
+          count++
+          alert(player + 'Won');
+          location.reload();
+        } else if((arr[6]== '0' && arr[7]== '0' && arr[8]== '0') || (arr[6]== 'X' && arr[7]== 'X' && arr[8]== 'X')) {
+          count++
+          alert(player + 'Won');
+          location.reload();
+        } else if((count != 1)) {
+          alert('Match Draw');
+          location.reload();
+        }
+
+      }
+      
+      function pushValuesInArray(index, player) {
+        switch(index) {
+          case 'first': 
+            arr[0] = player;
+            break;
+          case 'second': 
+            arr[1] = player;
+            break;
+          case 'third': 
+            arr[2] = player;
+            break;
+          case 'fourth': 
+            arr[3] = player;
+            break;
+          case 'fifth': 
+            arr[4] = player;
+            break;
+          case 'sixth': 
+            arr[5] = player;
+            break;
+          case 'seventh': 
+            arr[6] = player;
+            break;
+          case 'eight': 
+            arr[7] = player;
+            break;
+          case 'nineth': 
+            arr[8] = player;
+            break;
+        
+        }
+      }
+  </script>
+  <style>
+body {
+  font-family: 'Source Sans Pro';
+  background: #29335C;
+  background-size: cover;
+}
+
+.game {
+  background-color: transparent;
+  width: 402px;
+  height: 402px;
+  margin: 50px auto;
+}
+
+.game-field {
+  width: 134px;
+  height: 134px;
+  display: block;
+  float: left;
+  color: #EAEAEA;
+  font-size: 6.3em;
+  padding: 1px 27px;
+}
+#first, #second, #third {
+  border-bottom: 3px solid #525B76;
+}
+
+#second {
+  border-left: 3px solid #525B76;
+  border-right: 3px solid #525B76;
+}
+
+#fourth, #fifth, #sixth {
+  border-bottom: 3px solid #525B76;
+}
+
+#fifth {
+  border-left: 3px solid #525B76;
+  border-right: 3px solid #525B76;
+}
+
+#eight {
+  border-left: 3px solid #525B76;
+  border-right: 3px solid #525B76;
+}
+  </style>
+</html>

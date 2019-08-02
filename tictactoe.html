@@ -18,17 +18,19 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <div class="container">
         <div class="game">
-          <div id="first" onClick="checkValue(event)" class="game-field"></div>
-          <div id="second" onClick="checkValue(event)" class="game-field"></div>
-          <div id="third" onClick="checkValue(event)" class="game-field"></div>
-          <div id="fourth" onClick="checkValue(event)" class="game-field"></div>
-          <div id="fifth" onClick="checkValue(event)" class="game-field"></div>
-          <div id="sixth" onClick="checkValue(event)" class="game-field"></div>
-          <div id="seventh" onClick="checkValue(event)" class="game-field"></div>
-          <div id="eight" onClick="checkValue(event)" class="game-field"></div>
-          <div id="nineth" onClick="checkValue(event)" class="game-field"></div>
+          <h1 onclick="checkValue(event)" class="player-name"><span id="myText"></span></h1>
+          <div id="first" onClick="checkValue(event, 0)" class="game-field"></div>
+          <div id="second" onClick="checkValue(event,1)" class="game-field"></div>
+          <div id="third" onClick="checkValue(event,2)" class="game-field"></div>
+          <div id="fourth" onClick="checkValue(event,3)" class="game-field"></div>
+          <div id="fifth" onClick="checkValue(event,4)" class="game-field"></div>
+          <div id="sixth" onClick="checkValue(event,5)" class="game-field"></div>
+          <div id="seventh" onClick="checkValue(event,6)" class="game-field"></div>
+          <div id="eight" onClick="checkValue(event,7)" class="game-field"></div>
+          <div id="nineth" onClick="checkValue(event,8)" class="game-field"></div>
+          <button type="button" onclick="location.reload()" class="btn btn-primary" >Restart</button>
         </div>
-        
+        <h3 onclick="checkValue(event)" class="result"><span id="result"></span></h3> 
     </div>
   </body>
   <script>
@@ -37,58 +39,52 @@
       var game = {
         user1: '',
         user2: '',
-        showValue : true,
+        showValue : false,
       };
       function updateValue() {
-          return game.showValue = !game.showValue;
-      }
+        return game.showValue = !game.showValue;
+        }
       
-      function checkValue(event) {
-        updateValue();
+      function checkValue(event,index) {
+        if ((arr[index]!== 'O' && arr[index]!== 'X') && document.getElementById("result").innerHTML == ''){
+          updateValue();
           if (game.showValue == true){
             document.getElementById(event.currentTarget.id).innerHTML = 'X';
-            game.user1 = 'PlayerOne';
+            game.user1 = 'Player One';
+            document.getElementById("myText").innerHTML = game.user1;
             pushValuesInArray(event.currentTarget.id, 'X');
             calculateResult(game.user1);
           }else{
-            document.getElementById(event.currentTarget.id).innerHTML = '0';
-            game.user2 = 'PlayerTwo';
-            pushValuesInArray(event.currentTarget.id, '0');             
+            document.getElementById(event.currentTarget.id).innerHTML = 'O';
+            game.user2 = 'Player Two';
+            document.getElementById("myText").innerHTML = game.user2;
+            pushValuesInArray(event.currentTarget.id, 'O');             
             calculateResult(game.user2);
           }
+        }
+        
       }
       
       function calculateResult(player){
         count++;
-        if((arr[0]== '0' && arr[1]== '0' && arr[2]== '0') || (arr[0]== 'X' && arr[1]== 'X' && arr[2]== 'X')) {
-          alert(player + 'Won');
-          location.reload();
-        } else if((arr[0]== '0' && arr[3]== '0' && arr[6]== '0') || (arr[0]== 'X' && arr[3]== 'X' && arr[6]== 'X')) {
-          alert(player + 'Won');
-          location.reload();
-        } else if((arr[0]== '0' && arr[4]== '0' && arr[8]== '0') || (arr[0]== 'X' && arr[4]== 'X' && arr[8]== 'X')) {
-          alert(player + 'Won');
-          location.reload();
-        } else if((arr[1]== '0' && arr[4]== '0' && arr[7]== '0') || (arr[1]== 'X' && arr[4]== 'X' && arr[7]== 'X')) {
-          alert(player + 'Won');
-          location.reload();
-        } else if((arr[2]== '0' && arr[5]== '0' && arr[8]== '0') || (arr[2]== 'X' && arr[5]== 'X' && arr[8]== 'X')) {
-          alert(player + 'Won');
-          location.reload();
-        } else if((arr[2]== '0' && arr[4]== '0' && arr[6]== '0') || (arr[2]== 'X' && arr[4]== 'X' && arr[6]== 'X')) {
-          alert(player + 'Won');
-          location.reload();
-        } else if((arr[3]== '0' && arr[4]== '0' && arr[5]== '0') || (arr[3]== 'X' && arr[4]== 'X' && arr[5]== 'X')) {
-          alert(player + 'Won');
-          location.reload();
-        } else if((arr[6]== '0' && arr[7]== '0' && arr[8]== '0') || (arr[6]== 'X' && arr[7]== 'X' && arr[8]== 'X')) {
-          alert(player + 'Won');
-          location.reload();
+        if((arr[0]== 'O' && arr[1]== 'O' && arr[2]== 'O') || (arr[0]== 'X' && arr[1]== 'X' && arr[2]== 'X')) {
+          document.getElementById("result").innerHTML = player + ' ' +'Won';
+        } else if((arr[0]== 'O' && arr[3]== 'O' && arr[6]== 'O') || (arr[0]== 'X' && arr[3]== 'X' && arr[6]== 'X')) {
+          document.getElementById("result").innerHTML = player + ' ' +'Won';
+        } else if((arr[0]== 'O' && arr[4]== 'O' && arr[8]== 'O') || (arr[0]== 'X' && arr[4]== 'X' && arr[8]== 'X')) {
+          document.getElementById("result").innerHTML = player + ' ' +'Won';
+        } else if((arr[1]== 'O' && arr[4]== 'O' && arr[7]== 'O') || (arr[1]== 'X' && arr[4]== 'X' && arr[7]== 'X')) {
+          document.getElementById("result").innerHTML = player + ' ' +'Won';
+        } else if((arr[2]== 'O' && arr[5]== 'O' && arr[8]== 'O') || (arr[2]== 'X' && arr[5]== 'X' && arr[8]== 'X')) {
+          document.getElementById("result").innerHTML = player + ' ' +'Won';
+        } else if((arr[2]== 'O' && arr[4]== 'O' && arr[6]== 'O') || (arr[2]== 'X' && arr[4]== 'X' && arr[6]== 'X')) {
+          document.getElementById("result").innerHTML = player + ' ' +'Won';
+        } else if((arr[3]== 'O' && arr[4]== 'O' && arr[5]== 'O') || (arr[3]== 'X' && arr[4]== 'X' && arr[5]== 'X')) {
+          document.getElementById("result").innerHTML = player + ' ' +'Won';
+        } else if((arr[6]== 'O' && arr[7]== 'O' && arr[8]== 'O') || (arr[6]== 'X' && arr[7]== 'X' && arr[8]== 'X')) {
         } else if((count == 9)) {
-          alert('Match Draw');
-          location.reload();
+          document.getElementById("result").innerHTML =  'Match' + ' ' +'Draw';
         }
-
       }
       
       function pushValuesInArray(index, player) {
@@ -129,6 +125,7 @@ body {
   font-family: 'Source Sans Pro';
   background: #29335C;
   background-size: cover;
+  text-align: center;
 }
 
 .game {
@@ -169,5 +166,47 @@ body {
   border-left: 3px solid #525B76;
   border-right: 3px solid #525B76;
 }
+.btn-primary {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+    margin-top: 80px;
+}
+.btn {
+    display: inline-block;
+    font-weight: 1000;
+    text-align: center;
+    white-space: normal;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 1.100rem 3.00rem;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.player-name {
+  width: 100px;
+  height: 100px;
+  color: #007bff;
+  font-size: 5.0em;
+  margin-bottom: 30px;
+  padding: 1px 27px;
+  white-space: nowrap;
+}
+.result {
+  color: #dc3545;
+  font-size: 9em;
+  clear: both;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-top: 120px;
+}
+
   </style>
 </html>
